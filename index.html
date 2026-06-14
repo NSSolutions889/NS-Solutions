@@ -260,7 +260,7 @@
               message: document.querySelector("textarea[name='message']").value
           };
 
-          fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+          fetch("https://script.google.com/macros/s/AKfycbwRejjoBYR9qlNyWZCSwGwQbqeM136k_ZicQuzv0VxrU6skUnpfBwdPDAFGI5fbMY1TtA/exec", {
               method: "POST",
               body: JSON.stringify(formData)
           })
