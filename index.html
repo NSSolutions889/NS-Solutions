@@ -253,35 +253,32 @@
   <!-- FIRESTORE FORM SCRIPT -->
   <!-- Firebase App (compat version) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  
   <!-- Firestore (compat version) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  
-  
   <script>
     // 🔧 Replace these values with your Firebase config from the console
     const firebaseConfig = {
       apiKey: "AIzaSyB-WaCc6Cphbls3IgrhSHexLevjT5OEQAI",
       authDomain: "nssolutionscontact.firebaseapp.com",
       projectId: "nssolutionscontact",
-      storageBucket: "nssolutionscontact.firebasestorage.app",
+      storageBucket: "nssolutionscontact.appspot.com",
       messagingSenderId: "792231030759",
       appId: "1:792231030759:web:e91bb16e4af90ce5ee1742",
       measurementId: "G-5J8STCRMSR"
     };
-  
+
     // Initialize Firebase and Firestore
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
-  
+
     // Handle form submission
     document.getElementById("contactForm").addEventListener("submit", function(e) {
       e.preventDefault();
-    
+
       const name = document.querySelector("input[name='name']").value;
       const email = document.querySelector("input[name='email']").value;
       const message = document.querySelector("textarea[name='message']").value;
-    
+
       db.collection("contactMessages").add({
         name: name,
         email: email,
