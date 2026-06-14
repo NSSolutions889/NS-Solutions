@@ -262,12 +262,20 @@
 
           fetch("https://script.google.com/macros/s/AKfycbwRejjoBYR9qlNyWZCSwGwQbqeM136k_ZicQuzv0VxrU6skUnpfBwdPDAFGI5fbMY1TtA/exec", {
               method: "POST",
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify(formData)
           })
-          .then(res => res.json())
-          .then(data => {
-              alert("Message sent successfully!");
-              document.getElementById("contactForm").reset();
+          .then(res => {
+            if (!res.ok) throw new Error('Network response was not ok: ' + res.status);
+            return res.text();
+          })
+          .then(text => {
+            // Try to parse JSON if present, otherwise treat as plain text
+            let data;
+            try { data = JSON.parse(text); } catch(e) { data = { message: text }; }
+            alert("Message sent successfully!");
+            document.getElementById("contactForm").reset();
+            console.log("Response:", data);
           })
           .catch(err => {
               alert("Something went wrong. Please try again.");
